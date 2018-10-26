@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".function.home.HomeActivity">
+
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sentox's tools"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@+id/rv_home_list"
+        android:background="@color/color_50p_black"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_home_list"
+        android:layout_below="@+id/tv_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

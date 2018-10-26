@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--通用模板颜色-->
+    <!--分镜条,弹窗警示文字-->
+    <color name="common_alert_color">#fc4e7b</color>
+    <!--背景 ,弹出栏底 (alpha90%)-->
+    <!--标题,内容,操作等文字-->
+    <color name="common_main_text">#434A54</color>
+    <!--副标题等 字-->
+    <color name="common_minor_text">#AAB2BD</color>
+
+    <!--系统样式颜色-->
+    <color name="black">#000</color>
+    <color name="translucent">#11000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- 主界面 -->
+    <color name="main_act_gallery_bg">#e5f5f7fa</color>
+    <color name="main_act_gallery_bg_without_alpha">#f5f7fa</color>
+
+    <!-- Dialog -->
+    <color name="common_dialog_detail">#FF656D78</color>
+    <color name="common_dialog_detail2">#FFED5565</color>
+    <color name="view_dialog_loading_ad_text">#3e464d</color>
+
+    <!-- 加载动画 -->
+    <color name="edit_loading_color1">#ED3474</color>
+    <color name="edit_loading_color2">#ED3474</color>
+    <color name="edit_loading_color3">#ED3474</color>
+    <color name="edit_loading_color4">#ED3474</color>
+    <color name="edit_loading_color5">#ED3474</color>
+    <color name="edit_loading_color6">#ED3474</color>
+    <color name="edit_loading_color7">#ED3474</color>
+    <color name="edit_loading_color8">#ED3474</color>
+    <color name="edit_loading_color9">#ED3474</color>
+
+    <!--设置-->
+    <color name="setting_item_clicked">#11000000</color>
+
+    <color name="main_shot_color_start">#E5fe7a57</color>
+    <color name="main_shot_color_end">#E5fc4e7b</color>
+
+    <color name="main_shot_color_start_pressed">#fe7a57</color>
+    <color name="main_shot_color_end_pressed">#fc4e7b</color>
+
+
+    <!-- 程序icon背景色 -->
+    <color name="icon_about_bg">#ffffb931</color>
+
+
+    <color name="video_setting_title_bg">#ffffff</color>
+    <color name="common_blue">#5D9CEC</color>
+    <color name="common_green">#37bc9b</color>
+    <color name="security_setting_group_text_color">#fd5f6e</color>
+    <color name="security_setting_item_text_color">#434a54</color>
+
+    <!--每日推荐-->
+    <color name="recommend_activity_bg_color">#99000000</color>
+    <color name="white">#ffffff</color>
+    <color name="recommend_ad_content_color">#343434</color>
+    <color name="color_25p_black">#40000000</color>
+    <color name="color_50p_black">#80000000</color>
+    <color name="trans">#00000000</color>
+
+    <!--贴图页面-->
+    <color name="emoji_color_gray">#e6d6d6d6</color>
+
+    <!--悬浮窗广告-->
+    <color name="float_window_ad_style1_text_title">#ffffff</color>
+    <color name="float_window_ad_style2_text_title">#35393e</color>
+    <color name="float_window_ad_style1_text_content">#cccccc</color>
+    <color name="float_window_ad_style2_text_content">#51585f</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="painting_background">#88FFFFFF</color>
+    <color name="painting_background2">#88000000</color>
+    <color name="semitransparent_white">#80FFFFFF</color>
+
+    <!--填色页-->
+    <color name="yellow_btn_bg">#FFFFC619</color>
+    <color name="yellow_btn_shadow_bg">#FFE0AD16</color>
+    <color name="green_btn_bg">#FFA2D700</color>
+    <color name="green_30_btn_bg">#80B1D039</color>
+    <color name="green_btn_shadow_bg">#FF8EBD00</color>
+    <color name="gray_btn_bg">#FFF5F8F9</color>
+    <color name="gray_btn_bg_shadow_bg">#FFD7D9DA</color>
+    <color name="pink_btn_bg">#FFF191BC</color>
+    <color name="common_pink_shadow_bg">#FFD37FA5</color>
+    <color name="guide_paint_grid_uncolor">#FFF0F0F0</color>
+    <color name="guide_paint_grid_color">#FFF191BC</color>
+    <color name="guide_paint_grid_color_50">#FF5988</color>
+    <color name="color_choose_bg">#F9F9F9</color>
+
+    <!--完成页-->
+    <color name="saving_video_bg">#d9000000</color>
+
+
+    <!--主界面-->
+    <color name="home_page_tab_title_select_color">#000000</color>
+    <color name="home_page_tab_title_unselect_color">#E4E4E4</color>
+    <color name="image_new_tab_bg_color">#FF2966</color>
+    <color name="home_page_bg_color">#F5F8F9</color>
+    <color name="home_page_tab_indicator_color">#FF5988</color>
+    <color name="home_page_dots_line_color">#E2E2E2</color>
+    <color name="home_page_item_divider_line_color">#E6E8E8</color>
+    <color name="preview_mask_color">#33FFFFFF</color>
+    <color name="homepage_mywork_empty_text_color">#B2B2B2</color>
+    <color name="homepage_mywork_delete_btn_bg_color">#F5F8F9</color>
+
+
+    <!--启动页-->
+    <color name="launcher_start_btn_bg_color">#FF5988</color>
+    <color name="launcher_start_btn_bg_color2">#e04e77</color>
+    <color name="launcher_privacy_text_color">#b2b2b2</color>
+    <color name="launcher_btn_pressed_mask_color">#e04e77</color>
+
+    <!--反馈页-->
+    <color name="feedback_send_btn_color">#f091bb</color>
+    <color name="feedback_send_btn_press_color">#aef091bb</color>
+
+    <color name="black_2a">#2A000000</color>
+    <!--填色弹窗引导-->
+    <color name="paint_guide_title_color">#3e464d</color>
+
+    <!--订阅页-->
+    <color name="subscribe_check_bg_black">#40000000</color>
+    <color name="subscribe_option_blue">#FF4A90E2</color>
+
+</resources>

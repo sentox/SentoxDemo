@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.sentox.demo"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled = true
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'lefeigo'
+            keyPassword 'lefeigo123'
+            storeFile file('androidkey.jks')
+            storePassword 'android'
+        }
+    }
+
+    buildTypes {
+        release {
+            // 产品内部Log
+            buildConfigField("boolean", "LOG_DEBUG", "false")
+            // 混淆
+            minifyEnabled true
+            // 移除无用的资源文件文件
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            // 产品内部Log
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            signingConfig signingConfigs.release
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def outputFile = output.outputFile
+                if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                    def fla = "GooglePlay".equals(variant.flavorName) ? "" : "_${variant.flavorName}"
+                    def newFileName = "SentoxDemo_${defaultConfig.versionName}_${variant.buildType.name}_${releaseTime()}" + fla + ".apk"
+                    def name = "debug".equals(variant.buildType.name) ? "SentoxDemo_debug.apk" : newFileName;
+                    outputFileName = outputFile.name.replace(outputFile.name, name)
+                }
+            }
+        }
+    }
+
+
+    flavorDimensions "channel"
+//    渠道名
+    productFlavors {
+//        GooglePlay
+        GooglePlay {
+            dimension "channel"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "GooglePlay"]
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd_HH_mm", TimeZone.getTimeZone("GMT+8"))
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    //Google
+    implementation 'com.android.support:multidex:1.0.1'
+    // EventBus
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    //GreenDao
+    implementation 'org.greenrobot:greendao:3.2.2'
+}
+
+/*针对greenDao的一些配置*/
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.sentox.demo.greendao.gen' //自动生成的工具类的包名
+    targetGenDir 'src/main/java' //路径
+}

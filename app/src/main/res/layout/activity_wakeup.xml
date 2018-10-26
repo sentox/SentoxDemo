@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sentox.demo.function.clock.CustomClockView
+        android:id="@+id/v_wakeup_clockview"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btn_wakeup_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="stop"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_wakeup_tips"/>
+
+    <TextView
+        android:id="@+id/tv_wakeup_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="WakeupActivity"
+        android:textColor="@color/home_page_tab_indicator_color"
+        android:gravity="center"
+        android:textSize="35sp"/>
+
+</RelativeLayout>
