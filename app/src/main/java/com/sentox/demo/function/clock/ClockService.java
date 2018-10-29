@@ -59,7 +59,7 @@ public class ClockService extends Service {
     private void updateNoti(){
         if(!TextUtils.isEmpty(mStrTime)){
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
-            mBuilder .setSmallIcon(R.drawable.ic_launcher_background);
+            mBuilder .setSmallIcon(R.mipmap.ic_launcher);
             mBuilder .setContentTitle("Next Alarm At：");
             mBuilder .setContentText(mStrTime);
 
