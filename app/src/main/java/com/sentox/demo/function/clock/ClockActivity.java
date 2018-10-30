@@ -1,5 +1,6 @@
 package com.sentox.demo.function.clock;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.activity.BaseActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,7 +28,7 @@ import java.util.Calendar;
  * Created by Sentox
  * Created on 2018/9/12
  */
-public class ClockActivity extends BaseActivity {
+public class ClockActivity extends Activity {
 
     public final static String KEY_EXTRAS_WAKE_UP_TIME = "KEY_EXTRAS_WAKE_UP_TIME";
 

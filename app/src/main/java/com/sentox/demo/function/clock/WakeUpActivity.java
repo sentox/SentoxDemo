@@ -1,5 +1,6 @@
 package com.sentox.demo.function.clock;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -14,7 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.activity.BaseActivity;
 
 import java.text.SimpleDateFormat;
 
@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
  * Created by Sentox
  * Created on 2018/9/13
  */
-public class WakeUpActivity extends BaseActivity {
+public class WakeUpActivity extends Activity {
 
     private TextView mTvTips;
     private CustomClockView mCustomClockView;

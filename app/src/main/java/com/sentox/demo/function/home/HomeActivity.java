@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.sentox.demo.R;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
 import com.sentox.demo.function.clock.ClockActivity;
+import com.sentox.demo.function.gl.GLTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class HomeActivity extends Activity {
     private void initView(){
         mAdapter = new HomeAdapter(this,mBtnList);
         mRecyclerView = (RecyclerView)findViewById(R.id.rv_home_list);
-        BaseLinearLayoutManager baseLinearLayoutManager = new BaseLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        BaseLinearLayoutManager baseLinearLayoutManager = new BaseLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(baseLinearLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setHasFixedSize(true);
@@ -48,5 +49,10 @@ public class HomeActivity extends Activity {
         btnBean1.setStrTitle("时钟测试界面");
         btnBean1.setNextClass(ClockActivity.class);
         mBtnList.add(btnBean1);
+
+        HomeBtnBean btnBean2 = new HomeBtnBean();
+        btnBean2.setStrTitle("GL测试界面");
+        btnBean2.setNextClass(GLTestActivity.class);
+        mBtnList.add(btnBean2);
     }
 }

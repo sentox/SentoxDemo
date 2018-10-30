@@ -31,58 +31,5 @@ public class IPreferencesIds {
      * 是否为新用户
      * 值类型: boolean
      */
-    public static final String IS_NEW_USER = "key_is_new_user";
-    /**
-     * 是否为升级用户
-     * 值类型: boolean
-     */
-    public static final String IS_UPDATE_USER = "key_is_update_user";
-
-
-//    用户设置
-    /**
-     * 亮屏时间
-     */
-    public static final String KEY_TIME_OUT = "key_time_out";
-
-    /**
-     * 时间显示格式
-     */
-    public static final String IS_24_HOUR_FORMAT = "key_is_24_hour_fotmat";
-
-    /**
-     * 当前皮肤
-     * **/
-    public static final String KEY_CURRENT_SKIN = "KEY_CURRENT_SKIN";
-
-    /**
-     * 铃声渐强
-     */
-    public static final String IS_VIBRATION = "key_is_vibration";
-
-    /**
-     * 亮度
-     */
-    public static final String KEY_BRIGTHNESS = "key_brightness";
-
-    /**
-     * 是否添加了默认闹钟
-     * boolean
-     */
-    public static final String KEY_FIRST_INIT_CLOCK = "KEY_FIRST_INIT_CLOCK";
-
-    /**
-     *  是否需要显示双击提示
-     * **/
-    public static final String KEY_NEED_SHOW_DOUBLE_CLICK_TIPS = "KEY_NEED_SHOW_DOUBLE_CLICK_TIPS";
-
-    /**
-     *  最后一个暂停的秒表时间节点
-     * **/
-    public static final String KEY_LEAST_STOP_WATCH_TIME = "KEY_LEAST_STOP_WATCH_TIME";
-    /**
-     *  最后一个暂停的秒表时间节点的上一个时间点
-     * **/
-    public static final String KEY_LEAST_STOP_WATCH_TIME_LAST = "KEY_LEAST_STOP_WATCH_TIME_LAST";
-}
+    public static final String IS_NEW_USER = "key_is_new_user";}
 
