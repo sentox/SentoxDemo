@@ -28,7 +28,7 @@ public class GLTestActivity extends Activity {
     private void init(){
         mGLSurfaceView = (GLSurfaceView)findViewById(R.id.glsurfaceview);
         mGLSurfaceView.setEGLContextClientVersion(2);
-        mGLSurfaceView.setRenderer(new GLTestRenderer());
+        mGLSurfaceView.setRenderer(new AirHockeyRenderer());
         mFlagRendererSet = true;
     }
 
