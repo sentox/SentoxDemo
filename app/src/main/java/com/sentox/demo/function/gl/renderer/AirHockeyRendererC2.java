@@ -1,4 +1,4 @@
-package com.sentox.demo.function.gl;
+package com.sentox.demo.function.gl.renderer;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
@@ -19,24 +19,22 @@ import javax.microedition.khronos.opengles.GL10;
 import static android.opengl.GLES20.GL_FLOAT;
 import static android.opengl.GLES20.GL_LINES;
 import static android.opengl.GLES20.GL_POINTS;
-import static android.opengl.GLES20.GL_TRIANGLES;
+import static android.opengl.GLES20.GL_TRIANGLE_FAN;
 import static android.opengl.GLES20.glDrawArrays;
 import static android.opengl.GLES20.glEnableVertexAttribArray;
 import static android.opengl.GLES20.glGetAttribLocation;
-import static android.opengl.GLES20.glGetUniformLocation;
-import static android.opengl.GLES20.glUniform4f;
 import static android.opengl.GLES20.glUseProgram;
 import static android.opengl.GLES20.glVertexAttribPointer;
 
 /**
  * 描述：测试用渲染器
- * 说明：
+ * 说明：第2章
  * Created by Sentox
- * Created on 2018/10/29
+ * Created on 2018/11/13
  */
-public class AirHockeyRenderer implements GLSurfaceView.Renderer {
+public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
 
-    private final String TAG = "AirHockeyRenderer";
+    private final String TAG = "AirHockeyRendererC2";
 
     //每个点的位置参数个数
     private static final int POSITION_COMPONENT_COUNT = 2;
@@ -48,35 +46,53 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     private static final int BYTES_PER_FLOAT = 4;
     //本地内存块
     private final FloatBuffer mTableData;
-//    private final FloatBuffer mMalletsData;
-//    private final FloatBuffer mLineData;
 
     private int mProgram;
     private static final String A_POSITION = "a_Position";
-    private static final String U_COLOR = "u_Color";
-    //片段着色器颜色储存位置
-    private int mUColorLocation;
+
+    private static final String A_COLOR = "a_Color";
+    //单个颜色值数据个数
+    private static final int COLOR_COMPONENT_COUNT = 3;
+    //跨距，由于现在一个顶点有位置和颜色属性，因此OpenGL需要知道stride才能知道每个位置间有多少个字节，才能正确读取数据
+    private static final int STRIDE = (POSITION_COMPONENT_COUNT+COLOR_COMPONENT_COUNT)*BYTES_PER_FLOAT;
+
     //顶点着色器位置信息存储位置
     private int mAPositionLocation;
+    //顶点着色器颜色储存位置
+    private int mAColorLocation;
 
 
-    public AirHockeyRenderer() {
+    public AirHockeyRendererC2() {
 
         float[] tableVerticesTriangles = {
-                //三角形1
-                -0.5f, -0.5f,
-                0.5f, 0.5f,
-                -0.5f, 0.5f,
-                //三角形2
-                -0.5f, -0.5f,
-                0.5f, -0.5f,
-                0.5f, 0.5f,
+
+                //数据结构：x（x坐标）,y（y坐标）,R（红色通道）,G（绿色通道）,B（蓝色通道）
+                //颜色值在这里只有3位，单事实上OpenGL中颜色值有4个分量，在这里会使用默认值1替换没有被复制的alpha分量
+                //扇形三角形
+                0f,0f,1f,1f,1f,
+                -0.5f,-0.5f,0.7f,0.7f,0.7f,
+                0.5f,-0.5f,0.7f,0.7f,0.7f,
+                0.5f,0.5f,0.7f,0.7f,0.7f,
+                -0.5f,0.5f,0.7f,0.7f,0.7f,
+                -0.5f,-0.5f,0.7f,0.7f,0.7f,
                 //line
-                -0.5f, 0f,
-                0.5f, 0f,
+                -0.5f, 0f,1f,0f,0f,
+                0.5f, 0f,1f,0f,0f,
                 //两个点
-                0f, -0.25f,
-                0f, 0.25f
+                0f, -0.25f,0f,0f,1f,
+                0f, 0.25f,1f,0f,0f,
+                //边框1
+                -0.6f, -0.6f,1f,1f,0f,
+                0.6f, -0.6f,1f,0f,0f,
+                //边框2
+                0.6f, 0.6f,1f,1f,0f,
+                -0.6f, 0.6f,1f,0f,0f,
+                //边框3
+                -0.6f, -0.6f,1f,1f,0f,
+                -0.6f, 0.6f,1f,0f,0f,
+                //边框4
+                0.6f, 0.6f,1f,1f,0f,
+                0.6f, -0.6f,1f,0f,0f
         };
 
         mTableData = ByteBuffer
@@ -93,9 +109,8 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         Loger.i(TAG, "surface被创建");
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        String vertexShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_vertex_shader);
-        String fragmentShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_fragment_shader);
+        String vertexShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_vertex_shader_c2);
+        String fragmentShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_fragment_shader_c2);
 
         int vertexShader = ShaderHelper.compileVertexShader(vertexShaderSource);
         int fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource);
@@ -103,13 +118,16 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         if (BuildConfig.LOG_DEBUG) {
             ShaderHelper.validateProgram(mProgram);
         }
+        //将对象传入OpenGL
         glUseProgram(mProgram);
 
-        mUColorLocation = glGetUniformLocation(mProgram, U_COLOR);
+        mAColorLocation = glGetAttribLocation(mProgram,A_COLOR);
+
         mAPositionLocation = glGetAttribLocation(mProgram, A_POSITION);
         //将内存空间的指针指向0处，从头开始读取数据
         mTableData.position(0);
         /**
+         * 将顶点的位置数据与着色器中的A_POSITION关联起来
          * index：属性位置
          * size：顶点分量数量，此处为之前定义的2，
          *      但是在着色器中a_Position被定义为vec4，
@@ -118,40 +136,46 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
          *
          * type:顶点数据类型
          * normalized:只有使用整型数时才有意义，忽略
-         * stride：只有当一个数组存储多余一个属性时才有意义（例如不只是顶点坐标属性）
+         * stride：只有当一个数组存储多于一个属性时才有意义（例如不只是顶点坐标属性）
          * ptr：读取顶点的内存buffer对象
          * **/
         glVertexAttribPointer(mAPositionLocation, POSITION_COMPONENT_COUNT, GL_FLOAT,
-                false, 0, mTableData);
+                false, STRIDE, mTableData);
 
-        //使能顶点数组（激活顶点数组）
+        //使能顶点位置数组（激活顶点数组）
         glEnableVertexAttribArray(mAPositionLocation);
+
+        //定位到POSITION_COMPONENT_COUNT，第一个顶点的颜色值由这里开始
+        mTableData.position(POSITION_COMPONENT_COUNT);
+        /**
+         *  将顶点的颜色数据与着色器中的A_COLOR关联起来
+         * **/
+        glVertexAttribPointer(mAColorLocation,COLOR_COMPONENT_COUNT,GL_FLOAT,false,STRIDE,mTableData);
+        //使能顶点颜色数组
+        glEnableVertexAttribArray(mAColorLocation);
 
     }
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
         Loger.i(TAG, "surface被改变");
-//        GLES20.glViewport(0, 0, width, height);
-//        glClearColor(0,0,0,0);
     }
 
     @Override
     public void onDrawFrame(GL10 gl10) {
 //        Loger.i(TAG, "surface渲染一帧");
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-        //调用代码更新着色器中u_Color的值，下面的值分别代表着红、绿、蓝的亮度，最后一个代表alpha值
-        glUniform4f(mUColorLocation,1.0f,1.0f,1.0f,1.0f);
-        //绘制桌子，参数1代表要画三角形，参数2说明从顶点数组开始处读取顶点，参数3代表读入6个顶点
-        glDrawArrays(GL_TRIANGLES,0,6);
-        //设颜色为红色
-        glUniform4f(mUColorLocation,1.0f,0f,0f,1.0f);
+
+//        //绘制桌子，参数1代表要画三角形扇，参数2说明从顶点数组开始处读取顶点，参数3代表读入6个顶点
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 6);
         //画中线
-        glDrawArrays(GL_LINES,6,2);
-        //设颜色为蓝色
-        glUniform4f(mUColorLocation,0f,0f,1.0f,1.0f);
+        glDrawArrays(GL_LINES, 6, 2);
         //画点
-        glDrawArrays(GL_POINTS,8,1);
-        glDrawArrays(GL_POINTS,9,1);
+        glDrawArrays(GL_POINTS, 8, 1);
+        glDrawArrays(GL_POINTS, 9, 1);
+
+        //画边框
+        glDrawArrays(GL_LINES, 10, 8);
+
     }
 }

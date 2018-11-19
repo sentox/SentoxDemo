@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.sentox.demo.R;
+import com.sentox.demo.function.gl.renderer.AirHockeyRendererC2;
 
 /**
  * 描述：GlSurfaceView测试activity
@@ -28,7 +29,7 @@ public class GLTestActivity extends Activity {
     private void init(){
         mGLSurfaceView = (GLSurfaceView)findViewById(R.id.glsurfaceview);
         mGLSurfaceView.setEGLContextClientVersion(2);
-        mGLSurfaceView.setRenderer(new AirHockeyRenderer());
+        mGLSurfaceView.setRenderer(new AirHockeyRendererC2());
         mFlagRendererSet = true;
     }
 

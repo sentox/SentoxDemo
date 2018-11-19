@@ -54,5 +54,10 @@ public class HomeActivity extends Activity {
         btnBean2.setStrTitle("GL测试界面");
         btnBean2.setNextClass(GLTestActivity.class);
         mBtnList.add(btnBean2);
+
+        HomeBtnBean btnBean3 = new HomeBtnBean();
+        btnBean3.setStrTitle("日历主界面控件测试界面");
+        btnBean3.setNextClass(GLTestActivity.class);
+        mBtnList.add(btnBean3);
     }
 }
