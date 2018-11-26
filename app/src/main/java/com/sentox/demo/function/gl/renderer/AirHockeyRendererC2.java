@@ -20,6 +20,7 @@ import static android.opengl.GLES20.GL_FLOAT;
 import static android.opengl.GLES20.GL_LINES;
 import static android.opengl.GLES20.GL_POINTS;
 import static android.opengl.GLES20.GL_TRIANGLE_FAN;
+import static android.opengl.GLES20.glClearColor;
 import static android.opengl.GLES20.glDrawArrays;
 import static android.opengl.GLES20.glEnableVertexAttribArray;
 import static android.opengl.GLES20.glGetAttribLocation;
@@ -108,6 +109,7 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
+        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         Loger.i(TAG, "surface被创建");
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_vertex_shader_c2);
         String fragmentShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_fragment_shader_c2);
