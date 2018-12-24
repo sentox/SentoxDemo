@@ -145,7 +145,7 @@ public class AirHockeyRendererC1 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
         Loger.i(TAG, "surface被改变");
-//        GLES20.glViewport(0, 0, width, height);
+        GLES20.glViewport(0, 0, width, height);
 //        glClearColor(0,0,0,0);
     }
 
