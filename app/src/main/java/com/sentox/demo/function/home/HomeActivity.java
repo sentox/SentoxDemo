@@ -10,6 +10,7 @@ import com.sentox.demo.R;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
 import com.sentox.demo.function.clock.ClockActivity;
 import com.sentox.demo.function.gl.GLTestActivity;
+import com.sentox.demo.function.math.MathActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +57,8 @@ public class HomeActivity extends Activity {
         mBtnList.add(btnBean2);
 
         HomeBtnBean btnBean3 = new HomeBtnBean();
-        btnBean3.setStrTitle("日历主界面控件测试界面");
-        btnBean3.setNextClass(GLTestActivity.class);
+        btnBean3.setStrTitle("Math数学测试");
+        btnBean3.setNextClass(MathActivity.class);
         mBtnList.add(btnBean3);
     }
 }
