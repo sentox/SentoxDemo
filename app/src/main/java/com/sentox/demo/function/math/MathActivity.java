@@ -40,15 +40,21 @@ public class MathActivity extends BaseActivity {
         for (int i = 0; i < testNumber - 2; i++) {
             mults[i] = i + 2;
         }
+        Loger.i(TAG, "=====================计算乘积组合=======================");
         getCombinationOfNumberTimes(testNumber, new ArrayList<Integer>());
         //=====================归并排序====================================//
         int[] to_sort = {3434, 3356, 67, 12334, 878667, 387};
         int[] sortResult = mergeSort(to_sort);
         String string = "";
         for (int i = 0; i < sortResult.length; i++) {
-            string = string +","+ sortResult[i];
+            string = string + "," + sortResult[i];
         }
+        Loger.i(TAG, "=====================归并排序===============");
         Loger.i(TAG, string);
+
+        //=====================计算在n个元素的数组中取m个元素的组合数====================
+        Loger.i(TAG, "=====================计算在n个元素的数组中取m个元素的组合数====================");
+        countCombine();
     }
 
     //======================归并排序=============================================
@@ -61,7 +67,7 @@ public class MathActivity extends BaseActivity {
             return new int[0];
         }
 
-        if(sourceList.length == 1){
+        if (sourceList.length == 1) {
             return sourceList;
         }
 
@@ -174,5 +180,73 @@ public class MathActivity extends BaseActivity {
             }
         }
 
+    }
+    //==================计算在n个元素的数组中取m个元素的组合数===================
+
+    private int combineCount = 0;
+    private void countCombine(){
+        ArrayList<String> combineList = new ArrayList<String>();
+        combineList.add("中国");
+        combineList.add("美国");
+        combineList.add("法国");
+        combineList.add("俄罗斯");
+        combineList.add("英格兰");
+//        combineList.add("意大利");
+//        combineList.add("巴西");
+//        combineList.add("阿根廷");
+//        combineList.add("澳大利亚");
+//        combineList.add("瑞士");
+//        combineList.add("土耳其");
+//        combineList.add("伊拉克");
+//        combineList.add("伊朗");
+//        combineList.add("韩国");
+//        combineList.add("日本");
+//        combineList.add("荷兰");
+//        combineList.add("比利时");
+//        combineList.add("乌克兰");
+//        combineList.add("乌拉圭");
+//        combineList.add("南非");
+//        combineList.add("埃及");
+//        combineList.add("冰岛");
+//        combineList.add("瑞典");
+//        combineList.add("希腊");
+//        combineList.add("朝鲜");
+//        combineList.add("德国");
+//        combineList.add("丹麦");
+//        combineList.add("西班牙");
+//        combineList.add("葡萄牙");
+//        combineList.add("牙买加");
+//        combineList.add("加拿大");
+//        combineList.add("墨西哥");
+
+        combine(combineList,new ArrayList<String>(),2);
+        Loger.i(TAG, "CombineCount = "+combineCount);
+        combineCount = 0;
+    }
+
+    /**
+     * 计算n个元素中取m个元素的组合
+     * 备注：这里用的是递归法穷举，对应计算方式应为C(m,n) = A(m,n)/m! = (n!/(n-m)!)/m! =n!/((n-m)!*m!);
+     *
+     * @param combineList 可选的数据list（size = n)
+     * @param resultList  选出的组合list
+     * @param m           选出的组合list需要的元素个数
+     **/
+    private void combine(ArrayList<String> combineList, ArrayList<String> resultList, int m) {
+        if (resultList == null || resultList.size() == m) {
+            Loger.i(TAG, resultList);
+            combineCount++;
+            return;
+        }
+
+        for (int i = 0; i < combineList.size(); i++) {
+            ArrayList<String> newResult = (ArrayList<String>) resultList.clone();
+            newResult.add(combineList.get(i));
+            if(newResult.size()>m){
+                break;
+            }
+            ArrayList<String> newCombineList = new ArrayList<>(combineList.subList(i+1, combineList.size()));
+            combine(newCombineList,newResult,m);
+        }
     }
 }
