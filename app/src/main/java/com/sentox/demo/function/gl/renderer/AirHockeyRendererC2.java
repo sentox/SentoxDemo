@@ -29,7 +29,7 @@ import static android.opengl.GLES20.glVertexAttribPointer;
 
 /**
  * 描述：测试用渲染器
- * 说明：第2章
+ * 说明：扇形三角形，渐变颜色
  * Created by Sentox
  * Created on 2018/11/13
  */

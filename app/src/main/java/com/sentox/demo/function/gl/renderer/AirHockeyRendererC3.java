@@ -32,7 +32,7 @@ import static android.opengl.GLES20.glVertexAttribPointer;
 
 /**
  * 描述：测试用渲染器
- * 说明：第3章
+ * 说明：屏幕旋转适配
  * Created by Sentox
  * Created on 2018/11/13
  */

@@ -31,7 +31,7 @@ import static android.opengl.GLES20.glVertexAttribPointer;
 
 /**
  * 描述：测试用渲染器
- * 说明：第一章
+ * 说明：基础点连线
  * Created by Sentox
  * Created on 2018/10/29
  */
