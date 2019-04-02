@@ -37,7 +37,9 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
 
     private final String TAG = "AirHockeyRendererC2";
 
-    //每个点的位置参数个数
+    /**
+     * 每个点的位置参数个数
+     * **/
     private static final int POSITION_COMPONENT_COUNT = 2;
     /**
      * java浮点数（float)有32位（bit）精度,
@@ -45,7 +47,9 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
      * 因此每个浮点数占用4个字节
      **/
     private static final int BYTES_PER_FLOAT = 4;
-    //本地内存块
+    /**
+     *  本地内存块
+     * **/
     private final FloatBuffer mTableData;
 
     private int mProgram;
@@ -55,7 +59,7 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
     //单个颜色值数据个数
     private static final int COLOR_COMPONENT_COUNT = 3;
     //跨距，由于现在一个顶点有位置和颜色属性，因此OpenGL需要知道stride才能知道每个位置间有多少个字节，才能正确读取数据
-    private static final int STRIDE = (POSITION_COMPONENT_COUNT+COLOR_COMPONENT_COUNT)*BYTES_PER_FLOAT;
+    private static final int STRIDE = (POSITION_COMPONENT_COUNT + COLOR_COMPONENT_COUNT) * BYTES_PER_FLOAT;
 
     //顶点着色器位置信息存储位置
     private int mAPositionLocation;
@@ -70,30 +74,30 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
                 //数据结构：x（x坐标）,y（y坐标）,R（红色通道）,G（绿色通道）,B（蓝色通道）
                 //颜色值在这里只有3位，单事实上OpenGL中颜色值有4个分量，在这里会使用默认值1替换没有被复制的alpha分量
                 //扇形三角形
-                0f,0f,1f,1f,1f,
-                -0.5f,-0.5f,0.7f,0.7f,0.7f,
-                0.5f,-0.5f,0.7f,0.7f,0.7f,
-                0.5f,0.5f,0.7f,0.7f,0.7f,
-                -0.5f,0.5f,0.7f,0.7f,0.7f,
-                -0.5f,-0.5f,0.7f,0.7f,0.7f,
+                0f, 0f, 1f, 1f, 1f,
+                -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+                0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
+                0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+                -0.5f, 0.5f, 0.7f, 0.7f, 0.7f,
+                -0.5f, -0.5f, 0.7f, 0.7f, 0.7f,
                 //line
-                -0.5f, 0f,1f,0f,0f,
-                0.5f, 0f,1f,0f,0f,
+                -0.5f, 0f, 1f, 0f, 0f,
+                0.5f, 0f, 1f, 0f, 0f,
                 //两个点
-                0f, -0.25f,0f,0f,1f,
-                0f, 0.25f,1f,0f,0f,
+                0f, -0.25f, 0f, 0f, 1f,
+                0f, 0.25f, 1f, 0f, 0f,
                 //边框1
-                -0.6f, -0.6f,1f,1f,0f,
-                0.6f, -0.6f,1f,0f,0f,
+                -0.6f, -0.6f, 1f, 1f, 0f,
+                0.6f, -0.6f, 1f, 0f, 0f,
                 //边框2
-                0.6f, 0.6f,1f,1f,0f,
-                -0.6f, 0.6f,1f,0f,0f,
+                0.6f, 0.6f, 1f, 1f, 0f,
+                -0.6f, 0.6f, 1f, 0f, 0f,
                 //边框3
-                -0.6f, -0.6f,1f,1f,0f,
-                -0.6f, 0.6f,1f,0f,0f,
+                -0.6f, -0.6f, 1f, 1f, 0f,
+                -0.6f, 0.6f, 1f, 0f, 0f,
                 //边框4
-                0.6f, 0.6f,1f,1f,0f,
-                0.6f, -0.6f,1f,0f,0f
+                0.6f, 0.6f, 1f, 1f, 0f,
+                0.6f, -0.6f, 1f, 0f, 0f
         };
 
         mTableData = ByteBuffer
@@ -123,7 +127,7 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
         //将对象传入OpenGL
         glUseProgram(mProgram);
 
-        mAColorLocation = glGetAttribLocation(mProgram,A_COLOR);
+        mAColorLocation = glGetAttribLocation(mProgram, A_COLOR);
 
         mAPositionLocation = glGetAttribLocation(mProgram, A_POSITION);
         //将内存空间的指针指向0处，从头开始读取数据
@@ -138,7 +142,7 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
          *
          * type:顶点数据类型
          * normalized:只有使用整型数时才有意义，忽略
-         * stride：只有当一个数组存储多于一个属性时才有意义（例如不只是顶点坐标属性）
+         * stride：跨距，例如现在一个顶点有位置和颜色属性，因此OpenGL需要知道stride才能知道每个位置间有多少个字节，才能正确读取数据
          * ptr：读取顶点的内存buffer对象
          * **/
         glVertexAttribPointer(mAPositionLocation, POSITION_COMPONENT_COUNT, GL_FLOAT,
@@ -152,7 +156,7 @@ public class AirHockeyRendererC2 implements GLSurfaceView.Renderer {
         /**
          *  将顶点的颜色数据与着色器中的A_COLOR关联起来
          * **/
-        glVertexAttribPointer(mAColorLocation,COLOR_COMPONENT_COUNT,GL_FLOAT,false,STRIDE,mTableData);
+        glVertexAttribPointer(mAColorLocation, COLOR_COMPONENT_COUNT, GL_FLOAT, false, STRIDE, mTableData);
         //使能顶点颜色数组
         glEnableVertexAttribArray(mAColorLocation);
 

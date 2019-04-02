@@ -40,7 +40,9 @@ public class AirHockeyRendererC3 implements GLSurfaceView.Renderer {
 
     private final String TAG = "AirHockeyRendererC3";
 
-    //每个点的位置参数个数
+    /**
+     * 每个点的位置参数个数
+     * **/
     private static final int POSITION_COMPONENT_COUNT = 2;
     /**
      * java浮点数（float)有32位（bit）精度,
@@ -48,7 +50,9 @@ public class AirHockeyRendererC3 implements GLSurfaceView.Renderer {
      * 因此每个浮点数占用4个字节
      **/
     private static final int BYTES_PER_FLOAT = 4;
-    //本地内存块
+    /**
+     *  本地内存块
+     * **/
     private final FloatBuffer mTableData;
 
     private int mProgram;
@@ -148,7 +152,7 @@ public class AirHockeyRendererC3 implements GLSurfaceView.Renderer {
          *
          * type:顶点数据类型
          * normalized:只有使用整型数时才有意义，忽略
-         * stride：只有当一个数组存储多于一个属性时才有意义（例如不只是顶点坐标属性）
+         * stride：跨距，例如现在一个顶点有位置和颜色属性，因此OpenGL需要知道stride才能知道每个位置间有多少个字节，才能正确读取数据
          * ptr：读取顶点的内存buffer对象
          * **/
         glVertexAttribPointer(mAPositionLocation, POSITION_COMPONENT_COUNT, GL_FLOAT,

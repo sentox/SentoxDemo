@@ -39,7 +39,9 @@ public class AirHockeyRendererC1 implements GLSurfaceView.Renderer {
 
     private final String TAG = "AirHockeyRendererC1";
 
-    //每个点的位置参数个数
+    /**
+     * 每个点的位置参数个数
+     * **/
     private static final int POSITION_COMPONENT_COUNT = 2;
     /**
      * java浮点数（float)有32位（bit）精度,
@@ -47,7 +49,9 @@ public class AirHockeyRendererC1 implements GLSurfaceView.Renderer {
      * 因此每个浮点数占用4个字节
      **/
     private static final int BYTES_PER_FLOAT = 4;
-    //本地内存块
+    /**
+     *  本地内存块
+     * **/
     private final FloatBuffer mTableData;
 //    private final FloatBuffer mMalletsData;
 //    private final FloatBuffer mLineData;
