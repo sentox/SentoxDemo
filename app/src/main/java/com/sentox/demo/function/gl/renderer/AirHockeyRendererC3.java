@@ -83,7 +83,7 @@ public class AirHockeyRendererC3 implements GLSurfaceView.Renderer {
 
                 //数据结构：x（x坐标）,y（y坐标）,R（红色通道）,G（绿色通道）,B（蓝色通道）
                 //颜色值在这里只有3位，单事实上OpenGL中颜色值有4个分量，在这里会使用默认值1替换没有被复制的alpha分量
-                //扇形三角形
+                //扇形三角形,以第一个点数据为起始点，与后面的点两两形成一共4个三角形构成的正方（长方）体
                 0f, 0f, 1f, 1f, 1f,
                 -0.5f, -0.8f, 0.7f, 0.7f, 0.7f,
                 0.5f, -0.8f, 0.7f, 0.7f, 0.7f,
