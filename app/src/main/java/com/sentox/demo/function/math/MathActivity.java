@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * 描述：
+ * 描述：验证Activity
  * 说明：
  * Created by Sentox
  * Created on 2018/12/19
@@ -31,31 +31,75 @@ public class MathActivity extends BaseActivity {
 
         mTvFunction = findViewById(R.id.tv_math_function);
         mTvResult = findViewById(R.id.tv_math_result);
-        Result result = new Result();
-        mTvFunction.setText("证明：n格放的麦粒总数为2^n-1");
-        mTvResult.setText("证明命题为：" + prove(63, result) + ",\n总数为：" + result.mTotalNumber);
-        //=====================计算乘积组合=======================//
-        int testNumber = 20;
-        mults = new int[testNumber - 2];
-        for (int i = 0; i < testNumber - 2; i++) {
-            mults[i] = i + 2;
-        }
-        Loger.i(TAG, "=====================计算乘积组合=======================");
-        getCombinationOfNumberTimes(testNumber, new ArrayList<Integer>());
-        //=====================归并排序====================================//
-        int[] to_sort = {3434, 3356, 67, 12334, 878667, 387};
-        int[] sortResult = mergeSort(to_sort);
-        String string = "";
-        for (int i = 0; i < sortResult.length; i++) {
-            string = string + "," + sortResult[i];
-        }
-        Loger.i(TAG, "=====================归并排序===============");
-        Loger.i(TAG, string);
 
-        //=====================计算在n个元素的数组中取m个元素的组合数====================
-        Loger.i(TAG, "=====================计算在n个元素的数组中取m个元素的组合数====================");
-        countCombine();
+        mT1.start();
+        mT2.start();
+        mFlagThreadStart = true;
+
+//        Result result = new Result();
+//        mTvFunction.setText("证明：n格放的麦粒总数为2^n-1");
+//        mTvResult.setText("证明命题为：" + prove(63, result) + ",\n总数为：" + result.mTotalNumber);
+//        //=====================计算乘积组合=======================//
+//        int testNumber = 20;
+//        mults = new int[testNumber - 2];
+//        for (int i = 0; i < testNumber - 2; i++) {
+//            mults[i] = i + 2;
+//        }
+//        Loger.i(TAG, "=====================计算乘积组合=======================");
+//        getCombinationOfNumberTimes(testNumber, new ArrayList<Integer>());
+//        //=====================归并排序====================================//
+//        int[] to_sort = {3434, 3356, 67, 12334, 878667, 387};
+//        int[] sortResult = mergeSort(to_sort);
+//        String string = "";
+//        for (int i = 0; i < sortResult.length; i++) {
+//            string = string + "," + sortResult[i];
+//        }
+//        Loger.i(TAG, "=====================归并排序===============");
+//        Loger.i(TAG, string);
+//
+//        //=====================计算在n个元素的数组中取m个元素的组合数====================
+//        Loger.i(TAG, "=====================计算在n个元素的数组中取m个元素的组合数====================");
+//        countCombine();
     }
+
+    //===============================线程临时加入验证=====================================//
+    boolean mFlagThreadStart = false;
+
+    Thread mT1 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            Loger.i(TAG, "T1:线程启动");
+            boolean flag = true;
+            int index = 0;
+            try {
+            while (flag){
+                index++;
+                Loger.i(TAG, "T1:"+ index);
+                Thread.sleep(1000);
+                if(mFlagThreadStart){
+                    mT2.join();
+                    flag = false;
+                }
+            }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Loger.i(TAG, "T1:线程结束");
+        }
+    });
+
+    Thread mT2 = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Loger.i(TAG, "T2:线程启动");
+                Thread.sleep(4000);
+                Loger.i(TAG, "T2：线程结束");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    });
 
     //======================归并排序=============================================
 
