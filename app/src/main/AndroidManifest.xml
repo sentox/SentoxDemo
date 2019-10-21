@@ -70,6 +70,12 @@
             android:theme="@style/Theme.AppCompat.Fullscreen"
             android:launchMode="singleTop"/>
 
+        <activity
+        android:name=".function.rxtest.RxTestActivity"
+        android:configChanges="orientation"
+        android:theme="@style/Theme.AppCompat.Fullscreen"
+        android:launchMode="singleTop"/>
+
 
         <service android:name=".function.clock.ClockService" />
     </application>

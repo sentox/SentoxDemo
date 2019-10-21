@@ -11,6 +11,7 @@ import com.sentox.demo.function.base.BaseLinearLayoutManager;
 import com.sentox.demo.function.clock.ClockActivity;
 import com.sentox.demo.function.gl.GLTestActivity;
 import com.sentox.demo.function.math.MathActivity;
+import com.sentox.demo.function.rxtest.RxTestActivity;
 import com.sentox.demo.function.web.WebTestActivity;
 
 import java.util.ArrayList;
@@ -66,5 +67,10 @@ public class HomeActivity extends Activity {
         btnBean4.setStrTitle("Web拦截测试");
         btnBean4.setNextClass(WebTestActivity .class);
         mBtnList.add(btnBean4);
+
+        HomeBtnBean btnBean5 = new HomeBtnBean();
+        btnBean5.setStrTitle("RxJAVA");
+        btnBean5.setNextClass(RxTestActivity.class);
+        mBtnList.add(btnBean5);
     }
 }
