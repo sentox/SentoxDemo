@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SentoxDemo(阿拉伯)</string>
+
+    <string name="rtl_test">test msg（阿拉伯）</string>
+    <string name="rtl_english">setup English（阿拉伯）</string>
+    <string name="rtl_ar">setup AR（阿拉伯）</string>
+    <string name="rtl_ch">setup Chinese（阿拉伯</string>
+</resources>

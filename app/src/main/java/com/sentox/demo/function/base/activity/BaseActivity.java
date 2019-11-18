@@ -1,6 +1,8 @@
 package com.sentox.demo.function.base.activity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.sentox.demo.function.language.LanguageManager;
 
 /**
  * 描述：Activity基类
@@ -30,6 +34,16 @@ public class BaseActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+    }
+
+    @Override
+    public Resources getResources() {
+        return LanguageManager.Companion.getInstance().getResource();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LanguageManager.Companion.getInstance().attachBaseContext(newBase));
     }
 
     @Override

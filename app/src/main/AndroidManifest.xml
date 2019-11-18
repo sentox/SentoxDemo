@@ -33,11 +33,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".function.home.HomeActivity">
+        <activity
+            android:name=".function.home.HomeActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -45,36 +50,54 @@
             android:name="com.sentox.demo.function.clock.ClockActivity"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.sentox.demo.function.clock.WakeUpActivity"
             android:configChanges="orientation"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.sentox.demo.function.gl.GLTestActivity"
             android:configChanges="orientation"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
 
         <activity
             android:name=".function.math.MathActivity"
             android:configChanges="orientation"
-            android:theme="@style/Theme.AppCompat.Fullscreen"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
 
         <activity
             android:name=".function.web.WebTestActivity"
             android:configChanges="orientation"
-            android:theme="@style/Theme.AppCompat.Fullscreen"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
 
         <activity
-        android:name=".function.rxtest.RxTestActivity"
-        android:configChanges="orientation"
-        android:theme="@style/Theme.AppCompat.Fullscreen"
-        android:launchMode="singleTop"/>
+            android:name=".function.rxtest.RxTestActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
+
+        <activity
+            android:name=".function.lifecycle.LifecycleTestActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
+
+        <activity
+            android:name=".function.lifecycle.LifecycleJavaActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
+
+        <activity
+            android:name=".function.rtl.RightToLeftActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
 
 
         <service android:name=".function.clock.ClockService" />

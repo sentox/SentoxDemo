@@ -1,6 +1,5 @@
 package com.sentox.demo.function.home;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,9 +7,12 @@ import android.support.v7.widget.RecyclerView;
 
 import com.sentox.demo.R;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
+import com.sentox.demo.function.base.activity.BaseActivity;
 import com.sentox.demo.function.clock.ClockActivity;
 import com.sentox.demo.function.gl.GLTestActivity;
+import com.sentox.demo.function.lifecycle.LifecycleTestActivity;
 import com.sentox.demo.function.math.MathActivity;
+import com.sentox.demo.function.rtl.RightToLeftActivity;
 import com.sentox.demo.function.rxtest.RxTestActivity;
 import com.sentox.demo.function.web.WebTestActivity;
 
@@ -23,7 +25,7 @@ import java.util.List;
  * Created by Sentox
  * Created on 2018/9/12
  */
-public class HomeActivity extends Activity {
+public class HomeActivity extends BaseActivity {
 
     private List<HomeBtnBean> mBtnList = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -72,5 +74,15 @@ public class HomeActivity extends Activity {
         btnBean5.setStrTitle("RxJAVA");
         btnBean5.setNextClass(RxTestActivity.class);
         mBtnList.add(btnBean5);
+
+        HomeBtnBean btnBean6 = new HomeBtnBean();
+        btnBean6.setStrTitle("LifeCycle");
+        btnBean6.setNextClass(LifecycleTestActivity.class);
+        mBtnList.add(btnBean6);
+
+        HomeBtnBean btnBean7 = new HomeBtnBean();
+        btnBean7.setStrTitle("RTL");
+        btnBean7.setNextClass(RightToLeftActivity.class);
+        mBtnList.add(btnBean7);
     }
 }

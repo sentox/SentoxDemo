@@ -31,5 +31,11 @@ public class IPreferencesIds {
      * 是否为新用户
      * 值类型: boolean
      */
-    public static final String IS_NEW_USER = "key_is_new_user";}
+    public static final String IS_NEW_USER = "key_is_new_user";
+
+    /**
+     * 设置的语言记录
+     */
+    public static final String RECORD_LANGUAGE = "RECORD_LANGUAGE";
+}
 

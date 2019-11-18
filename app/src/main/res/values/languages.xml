@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 语言内置，按照“名称#语言码_地区码”分隔 -->
+    <string-array name="internal_languages">
+
+        <!-- 英语 -->
+        <item>English#en</item>
+        <!-- 简体中文 -->
+        <item>简体中文#zh_CN</item>
+        
+        <!-- 阿拉伯语 -->
+        <item>العربية#ar</item>
+
+    </string-array>
+
+</resources>

@@ -3,6 +3,7 @@ package com.sentox.demo.function.base.application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.sentox.demo.function.language.LanguageManager;
 import com.sentox.demo.utils.AppUtils;
 
 /**
@@ -44,6 +45,7 @@ public class GOApplication extends MultiDexApplication {
         LauncherModel.initSingleton(application);
         FunctionInitManager.INSTANCE.init(application);
         LauncherModel.getInstance().startLoadGlobalData();
+        LanguageManager.Companion.getInstance().initData();
     }
 
 

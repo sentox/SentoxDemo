@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SentoxDemo</string>
+
+    <string name="rtl_test">test msg</string>
+    <string name="rtl_english">setup English</string>
+    <string name="rtl_ar">setup AR</string>
+    <string name="rtl_ch">setup Chinese</string>
 </resources>
