@@ -52,14 +52,21 @@ class LanguageManager private constructor() {
 
     init {
         mResources = mContext.resources
+        initData()
     }
 
-    fun initData() {
+    /**
+     *  初始化
+     * **/
+    private fun initData() {
         loadInternal()
         loadCurrentLanguage()
     }
 
-    fun loadCurrentLanguage() {
+    /**
+     *  加载当前设置的语言
+     * **/
+    private fun loadCurrentLanguage() {
         var keyCode = getSystemUserLangKeycode()
         val dbCode = getKeyCodeFromSp()
         if (!TextUtils.isEmpty(dbCode)) {
@@ -73,13 +80,16 @@ class LanguageManager private constructor() {
      *
      * @return
      */
-    fun getSystemUserLangKeycode(): String {
+    private fun getSystemUserLangKeycode(): String {
         val local = Locale.getDefault()
         val lang = local.language.toLowerCase(Locale.US)
         val country = local.country.toUpperCase(Locale.US)
         return lang + "_" + country
     }
 
+    /**
+     *  加载内置多语言列表
+     * **/
     private fun loadInternal() {
         val r = mContext.resources
         val langConfigs = r.getStringArray(R.array.internal_languages)
@@ -98,7 +108,10 @@ class LanguageManager private constructor() {
         }
     }
 
-    private fun setLocal(lang: String, country: String) {
+    /**
+     *  设置本地化对象
+     * **/
+    private fun setLocale(lang: String, country: String) {
         if (!TextUtils.isEmpty(lang)) {
             mLocale = Locale(lang, country)
         }
@@ -139,19 +152,25 @@ class LanguageManager private constructor() {
             val bean = keyCode?.let { getLanguageByKeycode(it) }
             if (bean != null) {
                 var codes = JsonResultParser.parseKeyCode(keyCode)
-                setLocal(codes[0], codes[1])
+                setLocale(codes[0], codes[1])
                 saveKeyCodeToSp(keyCode)
                 updateResource()
             }
         }
     }
 
+    /**
+     *  保存设置的语言keycode
+     * **/
     private fun saveKeyCodeToSp(keyCode: String?) {
         keyCode.let {
             LauncherModel.getInstance().sharedPreferencesManager.commitString(IPreferencesIds.RECORD_LANGUAGE, it)
         }
     }
 
+    /**
+     *  获取用户设置的语言keycode
+     * **/
     private fun getKeyCodeFromSp(): String {
         return LauncherModel.getInstance().sharedPreferencesManager.getString(IPreferencesIds.RECORD_LANGUAGE, "")
     }
@@ -181,6 +200,9 @@ class LanguageManager private constructor() {
         }
     }
 
+    /**
+     *  获取定制好的资源对象
+     * **/
     fun getResource(): Resources {
         return mResources
     }

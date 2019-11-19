@@ -45,7 +45,7 @@ public class GOApplication extends MultiDexApplication {
         LauncherModel.initSingleton(application);
         FunctionInitManager.INSTANCE.init(application);
         LauncherModel.getInstance().startLoadGlobalData();
-        LanguageManager.Companion.getInstance().initData();
+        LanguageManager.Companion.getInstance();
     }
 
 
