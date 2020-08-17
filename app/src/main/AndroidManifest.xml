@@ -98,7 +98,11 @@
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Fullscreen" />
-
+        <activity
+            android:name=".function.rtl.RtlViewPagerTestActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
 
         <service android:name=".function.clock.ClockService" />
     </application>

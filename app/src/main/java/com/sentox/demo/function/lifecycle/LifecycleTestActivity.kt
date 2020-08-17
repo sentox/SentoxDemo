@@ -1,10 +1,10 @@
 package com.sentox.demo.function.lifecycle
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.sentox.demo.R
 import com.sentox.demo.function.base.log.Loger
 import kotlinx.android.synthetic.main.activity_lifecycle.*

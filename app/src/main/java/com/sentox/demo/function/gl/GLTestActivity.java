@@ -3,7 +3,7 @@ package com.sentox.demo.function.gl;
 import android.app.Activity;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.sentox.demo.R;
 import com.sentox.demo.function.gl.renderer.AirHockeyRendererC5;

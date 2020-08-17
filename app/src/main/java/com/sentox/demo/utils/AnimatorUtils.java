@@ -31,12 +31,13 @@ public class AnimatorUtils {
     /**
      * X轴平移动画
      **/
-    public static ObjectAnimator translationX(View view, int startX, int endX, long duration, long delayTime, Animator
+    public static ObjectAnimator translationX(View view, int startX, int endX, long duration, long delayTime,int repeatCount, Animator
             .AnimatorListener animatorListener) {
         ObjectAnimator anim = null;
         if (view != null) {
             anim = ObjectAnimator.ofFloat(view, "translationX", startX, endX);
             anim.setDuration(duration);
+            anim.setRepeatCount(repeatCount);
             anim.setStartDelay(delayTime);
             if (animatorListener != null) {
                 anim.addListener(animatorListener);

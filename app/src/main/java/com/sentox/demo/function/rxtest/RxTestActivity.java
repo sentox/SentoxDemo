@@ -2,12 +2,12 @@ package com.sentox.demo.function.rxtest;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.sentox.demo.R;
 import com.sentox.demo.function.base.log.Loger;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;

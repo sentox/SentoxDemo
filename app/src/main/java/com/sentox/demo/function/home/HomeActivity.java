@@ -1,9 +1,6 @@
 package com.sentox.demo.function.home;
 
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.sentox.demo.R;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
@@ -13,11 +10,16 @@ import com.sentox.demo.function.gl.GLTestActivity;
 import com.sentox.demo.function.lifecycle.LifecycleTestActivity;
 import com.sentox.demo.function.math.MathActivity;
 import com.sentox.demo.function.rtl.RightToLeftActivity;
+import com.sentox.demo.function.rtl.RtlViewPagerTestActivity;
 import com.sentox.demo.function.rxtest.RxTestActivity;
 import com.sentox.demo.function.web.WebTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 描述：主界面
@@ -84,5 +86,10 @@ public class HomeActivity extends BaseActivity {
         btnBean7.setStrTitle("RTL");
         btnBean7.setNextClass(RightToLeftActivity.class);
         mBtnList.add(btnBean7);
+
+        HomeBtnBean btnBean8 = new HomeBtnBean();
+        btnBean8.setStrTitle("ViewPager");
+        btnBean8.setNextClass(RtlViewPagerTestActivity.class);
+        mBtnList.add(btnBean8);
     }
 }

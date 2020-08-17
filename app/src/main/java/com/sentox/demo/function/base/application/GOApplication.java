@@ -1,10 +1,11 @@
 package com.sentox.demo.function.base.application;
 
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
 
 import com.sentox.demo.function.language.LanguageManager;
 import com.sentox.demo.utils.AppUtils;
+
+import androidx.multidex.MultiDexApplication;
 
 /**
  * 描述：自定义application
