@@ -9,6 +9,7 @@ import com.sentox.demo.R
 import com.sentox.demo.function.base.log.Loger
 import kotlinx.android.synthetic.main.activity_lifecycle.*
 import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 /**
  * 描述：LifeCycle测试
@@ -100,15 +101,17 @@ class LifecycleTestActivity : AppCompatActivity() {
 //        }
 
 
-       GlobalScope.launch (Dispatchers.IO){
-           Loger.i(TAG, "Io   currentThread="+Thread.currentThread().name)
-           delay(1000)
-           mTvLiveCycleTest.text = "sdadfsdfgsdfgsdfgsdfgdfgdfggfdghf123"
-           withContext(Dispatchers.Main){
-               Loger.i(TAG, "Main   currentThread="+Thread.currentThread().name)
-           }
+//       GlobalScope.launch (Dispatchers.IO){
+//           Loger.i(TAG, "Io   currentThread="+Thread.currentThread().name)
+//           delay(1000)
+//           withContext(Dispatchers.Main){
+//               mTvLiveCycleTest.text = "sdadfsdfgsdfgsdfgsdfgdfgdfggfdghf123"
+//               Loger.i(TAG, "Main   currentThread="+Thread.currentThread().name)
+//           }
+//
+//       }
 
-       }
+//        val coroutineScope = CoroutineScope(newcoro)
 
     }
 
