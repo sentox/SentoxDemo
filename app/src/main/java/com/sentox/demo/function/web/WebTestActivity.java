@@ -2,7 +2,6 @@ package com.sentox.demo.function.web;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -10,8 +9,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.sentox.demo.R;
+import com.sentox.demo.databinding.ActivityWebTestBinding;
 import com.sentox.demo.function.base.activity.BaseActivity;
 import com.sentox.demo.function.base.log.Loger;
+
+import androidx.annotation.Nullable;
 
 /**
  * 描述：网页解析测试activity
@@ -19,7 +21,7 @@ import com.sentox.demo.function.base.log.Loger;
  * Created by Sentox
  * Created on 2019/1/23
  */
-public class WebTestActivity extends BaseActivity {
+public class WebTestActivity extends BaseActivity<ActivityWebTestBinding> {
 
     private WebView mWebView;
 
@@ -28,7 +30,6 @@ public class WebTestActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_test);
         mWebView = findViewById(R.id.wb_test);
 
         // 开启JavaScript支持

@@ -2,8 +2,11 @@ package com.meelive.ingkee.home.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.viewbinding.ViewBinding
 import androidx.viewpager.widget.PagerAdapter
+import com.meelive.ingkee.home.fragment.TestFragment
 import com.meelive.ingkee.view.RtlPagerAdapter
+import com.sentox.demo.function.math.Test
 import com.sentox.demo.function.rtl.HomeBaseFragment
 import kotlin.collections.ArrayList
 
@@ -20,7 +23,7 @@ class HomeNewGroupAdapter(fm: FragmentManager) : RtlPagerAdapter(fm) {
         notifyDataSetChanged()
     }
 
-    fun addAllFragment(list: ArrayList<HomeBaseFragment>) {
+    fun addAllFragment(list: ArrayList<TestFragment>) {
         mList.addAll(list)
         notifyDataSetChanged()
     }
@@ -34,10 +37,10 @@ class HomeNewGroupAdapter(fm: FragmentManager) : RtlPagerAdapter(fm) {
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return (mList[position] as HomeBaseFragment).getTagName()
+        return (mList[position] as TestFragment).getTagName()
     }
 
     fun getTagIdByPosition(position: Int): Int {
-        return (mList[position] as HomeBaseFragment).getTagId()
+        return (mList[position] as TestFragment).getTagId()
     }
 }

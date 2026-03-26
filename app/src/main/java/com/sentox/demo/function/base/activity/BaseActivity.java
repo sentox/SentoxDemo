@@ -16,6 +16,7 @@ import com.sentox.demo.function.language.LanguageManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * 描述：Activity基类
@@ -23,12 +24,20 @@ import androidx.core.view.ViewCompat;
  * Created by Sentox
  * Created on 2018/9/14
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
+
+    private VB binding = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBar();
+        binding = ViewBindingUtil.inflateWithActivity(this, getLayoutInflater());
+        if (binding != null) {
+            View mContentView = binding.getRoot();
+//            mContentView.setTag(BaseViewTag.TAG_NAME, this);
+            setContentView(mContentView);
+        }
     }
 
     @Override
@@ -64,6 +73,10 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public VB getBinding(){
+        return binding;
     }
 
     //****************************************设置沉浸式状态栏*********************************************//

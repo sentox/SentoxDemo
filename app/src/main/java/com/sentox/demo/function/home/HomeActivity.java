@@ -3,6 +3,7 @@ package com.sentox.demo.function.home;
 import android.os.Bundle;
 
 import com.sentox.demo.R;
+import com.sentox.demo.databinding.ActivityHomeBinding;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
 import com.sentox.demo.function.base.activity.BaseActivity;
 import com.sentox.demo.function.clock.ClockActivity;
@@ -27,7 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * Created by Sentox
  * Created on 2018/9/12
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
 
     private List<HomeBtnBean> mBtnList = new ArrayList<>();
     private RecyclerView mRecyclerView;
@@ -36,7 +37,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
         initList();
         initView();
     }
@@ -91,5 +91,10 @@ public class HomeActivity extends BaseActivity {
         btnBean8.setStrTitle("ViewPager");
         btnBean8.setNextClass(RtlViewPagerTestActivity.class);
         mBtnList.add(btnBean8);
+
+        HomeBtnBean btnBean9 = new HomeBtnBean();
+        btnBean9.setStrTitle("画板");
+        btnBean9.setNextClass(RtlViewPagerTestActivity.class);
+        mBtnList.add(btnBean9);
     }
 }

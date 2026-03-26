@@ -7,7 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sentox.demo.R
 import com.sentox.demo.function.base.log.Loger
-import kotlinx.android.synthetic.main.activity_lifecycle.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

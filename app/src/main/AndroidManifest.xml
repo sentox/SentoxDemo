@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sentox.demo">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
@@ -36,6 +40,7 @@
         <activity
             android:name=".function.home.HomeActivity"
             android:configChanges="orientation"
+            android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Fullscreen">
@@ -100,6 +105,12 @@
             android:theme="@style/Theme.AppCompat.Fullscreen" />
         <activity
             android:name=".function.rtl.RtlViewPagerTestActivity"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
+
+        <activity
+            android:name=".function.drawingboard.DrawBoardActivity"
             android:configChanges="orientation"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Fullscreen" />
