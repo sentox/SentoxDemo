@@ -3,8 +3,12 @@ package com.sentox.demo.function.lifecycle
 import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.viewModelScope
 import com.sentox.demo.databinding.ActivityLifecycleBinding
 import com.sentox.demo.function.base.activity.BaseActivity
 import com.sentox.demo.function.base.log.L
@@ -13,6 +17,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
@@ -32,33 +38,45 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
     }
 
     val mViewModel by lazy {
-        ViewModelProviders.of(this).get(TestModel::class.java)
+        ViewModelProvider(this).get(TestModel::class.java)
     }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         L.info(TAG, "主线线程${Thread.currentThread().name},id=${Thread.currentThread().id}")
-        val flow = MutableStateFlow(1)
-        CoroutineScope(Dispatchers.Default).launch {
-            launch(Dispatchers.IO) {
-                for (i in 1 .. 10) {
-                    L.info(TAG, "StateFlow.emit=$i")
-                    flow.emit(i)
-                    delay(100)
-                }
-                L.info(TAG, "StateFlow.emit=10,重复发送测试")
-                flow.emit(10)//重复发送不会被接收
-            }
-            launch(Dispatchers.Main) {
-                delay(200)
-                flow.collect {
-                    // 每次值变化都会收到，新订阅者立刻收到当前值
-                    L.info(TAG, "StateFlow.collect1=$it")
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mViewModel.mUiFlow.collect { data ->
+                    if (data != null) {
+                        binding?.mTvLiveCycleTest?.text = "${data.mStr1}+${data.mStr2}"
+                        L.info(TAG, "显示数据：${binding?.mTvLiveCycleTest?.text}")
+                    }
+
                 }
             }
-            BitmapFactory.decodeFile("")
         }
+        mViewModel.reqData()
+//        val flow = MutableStateFlow(1)
+//        CoroutineScope(Dispatchers.Default).launch {
+//            launch(Dispatchers.IO) {
+//                for (i in 1..10) {
+//                    L.info(TAG, "StateFlow.emit=$i")
+//                    flow.emit(i)
+//                    delay(100)
+//                }
+//                L.info(TAG, "StateFlow.emit=10,重复发送测试")
+//                flow.emit(10)//重复发送不会被接收
+//            }
+//            launch(Dispatchers.Main) {
+//                delay(200)
+//                flow.collect {
+//                    // 每次值变化都会收到，新订阅者立刻收到当前值
+//                    L.info(TAG, "StateFlow.collect1=$it")
+//                }
+//            }
+//            BitmapFactory.decodeFile("")
+//        }
     }
 
     private suspend fun getResult(): Int {
@@ -76,15 +94,27 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
     }
 
     class TestModel : ViewModel() {
-        val profileData = MutableLiveData<String>()
-        var profile: String? = "null"
+
+        private val mUpdateStateFlow = MutableStateFlow<UiData?>(null)
+        var mUiFlow: StateFlow<UiData?> = mUpdateStateFlow.asStateFlow()
 
         override fun onCleared() {
-            profile = null
+            mUpdateStateFlow.value = null
         }
 
-        fun testNewData(data: String) {
-            profileData.postValue(data)
+
+        fun reqData() {
+            viewModelScope.launch {
+                val result = withContext(Dispatchers.IO) {
+                    delay(4000)
+                    val data = UiData("result001", "result002")
+                    L.info(TAG, "获取到数据，线程${Thread.currentThread().name}")
+                    data
+                }
+                mUpdateStateFlow.value = result
+            }
         }
+
+        class UiData(var mStr1: String = "", var mStr2: String = "")
     }
 }

@@ -48,7 +48,7 @@ class LanguageManager private constructor() {
     private var mContext: Context = GOApplication.getAppContext()
     private var mLanguages: LinkedHashMap<String, LanguageBean> = LinkedHashMap()
     private var mResources: Resources
-    private var mLocale: Locale = Locale("en","us")
+    private var mLocale: Locale = Locale("en", "us")
 
     init {
         mResources = mContext.resources
@@ -138,7 +138,7 @@ class LanguageManager private constructor() {
 
         val configuration = resources.configuration
         configuration.setLocale(mLocale)
-        configuration.locales = LocaleList(mLocale)
+        configuration.setLocales(LocaleList(mLocale))
         return context.createConfigurationContext(configuration)
     }
 
