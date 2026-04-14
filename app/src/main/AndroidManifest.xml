@@ -41,7 +41,7 @@
             android:name=".function.home.HomeActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Fullscreen">
             <intent-filter>
@@ -89,7 +89,7 @@
         <activity
             android:name=".function.lifecycle.LifecycleTestActivity"
             android:configChanges="orientation"
-            android:launchMode="singleTop"
+            android:launchMode="standard"
             android:theme="@style/Theme.AppCompat.Fullscreen" />
 
         <activity

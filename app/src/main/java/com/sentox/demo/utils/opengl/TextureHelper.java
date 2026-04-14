@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
 import com.sentox.demo.function.base.application.GOApplication;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import static android.opengl.GLES20.GL_LINEAR;
 import static android.opengl.GLES20.GL_LINEAR_MIPMAP_LINEAR;
@@ -38,7 +38,7 @@ public class TextureHelper {
         glGenTextures(1, textureObjectIds, 0);
 
         if (textureObjectIds[0] == 0) {
-            Loger.i(TAG, "无法生成新的OpenGL纹理对象");
+            L.info(TAG, "无法生成新的OpenGL纹理对象");
             return 0;
         }
         //解码位图
@@ -46,7 +46,7 @@ public class TextureHelper {
         options.inScaled = false;
         final Bitmap bitmap = BitmapFactory.decodeResource(GOApplication.getAppContext().getResources(), resoureId, options);
         if (bitmap == null) {
-            Loger.i(TAG, "ResId:" + resoureId + ",图片解码失败,删除纹理对象");
+            L.info(TAG, "ResId:" + resoureId + ",图片解码失败,删除纹理对象");
             glDeleteTextures(1, textureObjectIds, 0);
             return 0;
         }

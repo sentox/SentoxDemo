@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import androidx.annotation.Nullable;
 import io.reactivex.Observable;
@@ -45,22 +45,22 @@ public class RxTestActivity extends Activity {
         }).subscribe(new Observer<Integer>() {
             @Override
             public void onSubscribe(Disposable d) {
-                Loger.i(TAG, "开始订阅被观察者");
+                L.info(TAG, "开始订阅被观察者");
             }
 
             @Override
             public void onNext(Integer value) {
-                Loger.i(TAG, "处理onNext事件+"+value);
+                L.info(TAG, "处理onNext事件+"+value);
             }
 
             @Override
             public void onError(Throwable e) {
-                Loger.i(TAG, "处理错误事件");
+                L.info(TAG, "处理错误事件");
             }
 
             @Override
             public void onComplete() {
-                Loger.i(TAG, "处理完成事件");
+                L.info(TAG, "处理完成事件");
             }
         });
 //        //just

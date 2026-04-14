@@ -1,14 +1,23 @@
 package com.sentox.demo.function.lifecycle
 
+import android.graphics.BitmapFactory
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.sentox.demo.R
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.databinding.ActivityLifecycleBinding
+import com.sentox.demo.function.base.activity.BaseActivity
+import com.sentox.demo.function.base.log.L
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 /**
  * 描述：LifeCycle测试
@@ -16,7 +25,7 @@ import kotlin.coroutines.CoroutineContext
  * Created by sentox
  * Created on 2019-10-21
  */
-class LifecycleTestActivity : AppCompatActivity() {
+class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
 
     companion object {
         const val TAG = "LifecycleTestActivity"
@@ -26,96 +35,44 @@ class LifecycleTestActivity : AppCompatActivity() {
         ViewModelProviders.of(this).get(TestModel::class.java)
     }
 
-    var mStrTest: String = "1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lifecycle)
+        L.info(TAG, "主线线程${Thread.currentThread().name},id=${Thread.currentThread().id}")
+        val flow = MutableStateFlow(1)
+        CoroutineScope(Dispatchers.Default).launch {
+            launch(Dispatchers.IO) {
+                for (i in 1 .. 10) {
+                    L.info(TAG, "StateFlow.emit=$i")
+                    flow.emit(i)
+                    delay(100)
+                }
+                L.info(TAG, "StateFlow.emit=10,重复发送测试")
+                flow.emit(10)//重复发送不会被接收
+            }
+            launch(Dispatchers.Main) {
+                delay(200)
+                flow.collect {
+                    // 每次值变化都会收到，新订阅者立刻收到当前值
+                    L.info(TAG, "StateFlow.collect1=$it")
+                }
+            }
+            BitmapFactory.decodeFile("")
+        }
+    }
 
-//        lifecycle.addObserver(object : LifecycleObserver {
-//            @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//            fun connectListener() {
-//                Loger.i(TAG, "connect----onResume")
-//            }
-//
-//            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-//            fun disconnectListener() {
-//                Loger.i(TAG, "disconnect----onPause")
-//            }
-//        })
-//
-//        mTvLiveCycleTest.text = mViewModel.profile
-//
-//        mViewModel.profileData.observe(this, Observer {
-//            it?.also {
-//                Loger.i(TAG, "data change");
-//                mTvLiveCycleTest.text = it
-//            }
-//        })
-//
-//        mTvLiveCycleTest.setOnClickListener {
-//            Loger.i(TAG, "onclick");
-//            it.postDelayed(Runnable {
-//                mViewModel.testNewData("click")
-//            }, 3000)
-//
-//        }
-//
-//        Loger.i(TAG, "初始化：${mViewModel.profile}")
-//        var result = mViewModel.also {
-//            it.profile = "2"
-//            Loger.i(TAG, "赋值：${it.profile}")
-//            it.profile
-//        }
-////        Loger.i(TAG, "结果：$result");
-//        Loger.i(TAG, "对象中的数值：${mViewModel.profile}");
+    private suspend fun getResult(): Int {
+        delay(2000)
+        return 555
+    }
 
-//        Loger.i(TAG, "主线程，下面开启阻塞的runBlocking协程作用域")
-//        runBlocking {
-//            launch {
-//                delay(200L)
-//                Loger.i(TAG, "runBlocking开启的不会阻塞的子协程任务")
-//            }
-//
-//            coroutineScope{
-//                launch {
-//                    delay(500L)
-//                    test1()
-//                }
-//                delay(100L)
-//                Loger.i(TAG, "RunBlocking作用域开启的字协程作用域coroutineScope的任务")
-//            }
-//
-//            Loger.i(TAG, "runBlocking协程结束")
-//        }
-//        Loger.i(TAG, "主线程，runBlocking结束")
-//
-//        GlobalScope.launch {
-//            repeat(100000){
-//                launch {
-//                    delay(1000)
-//                    Loger.i(TAG, ".");
-//                }
-//            }
-//        }
-
-
-//       GlobalScope.launch (Dispatchers.IO){
-//           Loger.i(TAG, "Io   currentThread="+Thread.currentThread().name)
-//           delay(1000)
-//           withContext(Dispatchers.Main){
-//               mTvLiveCycleTest.text = "sdadfsdfgsdfgsdfgsdfgdfgdfggfdghf123"
-//               Loger.i(TAG, "Main   currentThread="+Thread.currentThread().name)
-//           }
-//
-//       }
-
-//        val coroutineScope = CoroutineScope(newcoro)
+    override fun onDestroy() {
+        super.onDestroy()
 
     }
 
     suspend fun test1() {
-        Loger.i(TAG, "coroutineScope开启的不会阻塞的子协程任务")
+        L.info(TAG, "coroutineScope开启的不会阻塞的子协程任务")
     }
 
     class TestModel : ViewModel() {
@@ -131,46 +88,3 @@ class LifecycleTestActivity : AppCompatActivity() {
         }
     }
 }
-
-//class LifecycleTestActivity : Activity(), LifecycleOwner {
-//
-//    companion object {
-//        const val TAG = "LifecycleTestActivity"
-//    }
-//
-//    lateinit var mLifecycle: LifecycleRegistry
-//
-//    override fun getLifecycle(): Lifecycle {
-//        return mLifecycle
-//    }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_lifecycle)
-//        mLifecycle = LifecycleRegistry(this)
-//        lifecycle.addObserver(object :LifecycleObserver{
-//            @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-//            fun connectListener(){
-//                Loger.i(TAG, "connect----onResume")
-//            }
-//
-//            @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-//            fun disconnectListener(){
-//                Loger.i(TAG, "disconnect----onPause")
-//            }
-//        })
-//        mLifecycle.markState(Lifecycle.State.CREATED)
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        mLifecycle.markState(Lifecycle.State.RESUMED)
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        mLifecycle.markState(Lifecycle.State.STARTED)
-//    }
-//
-//
-//}

@@ -6,7 +6,7 @@ import android.opengl.Matrix;
 
 import com.sentox.demo.BuildConfig;
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 import com.sentox.demo.utils.opengl.ShaderHelper;
 import com.sentox.demo.utils.opengl.TextResourceReader;
 
@@ -126,7 +126,7 @@ public class AirHockeyRendererC4 implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-        Loger.i(TAG, "surface被创建");
+        L.info(TAG, "surface被创建");
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_vertex_shader_c3);
         String fragmentShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_fragment_shader_c2);
 
@@ -179,7 +179,7 @@ public class AirHockeyRendererC4 implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
-        Loger.i(TAG, "surface被改变");
+        L.info(TAG, "surface被改变");
         //通知OpenGL可视区域改变
         GLES20.glViewport(0, 0, width, height);
         //获得实际长宽比，以较长的边为分子，较短的边为分母

@@ -7,9 +7,8 @@ import android.util.LayoutDirection
 import androidx.core.text.TextUtilsCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 import java.util.*
-import kotlin.math.max
 
 /**
  * 描述：订制RTLViewPager
@@ -142,7 +141,7 @@ class InkeRtlViewPager : ViewPager {
 
         override fun onPageSelected(position: Int) {
             var reversePos = reverse(position)
-            Loger.i("$TAG:position=$position")
+            L.info("$TAG:position=$position")
             if (!mBlockListen) {
                 orgListener.onPageSelected(reverse(position))
             }

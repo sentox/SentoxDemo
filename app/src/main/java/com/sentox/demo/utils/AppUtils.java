@@ -16,7 +16,7 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import com.sentox.demo.function.base.application.GOApplication;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -412,7 +412,7 @@ public class AppUtils {
             i = PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
         }
         ComponentName componentName = new ComponentName(GOApplication.getAppContext(), cls);
-        Loger.v("appIconGone", componentName.getClassName() + "  isGone : " + isGone);
+        L.v("appIconGone", componentName.getClassName() + "  isGone : " + isGone);
         p.setComponentEnabledSetting(componentName, i, PackageManager.DONT_KILL_APP);
     }
 }

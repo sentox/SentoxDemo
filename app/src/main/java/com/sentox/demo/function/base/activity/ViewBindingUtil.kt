@@ -3,7 +3,7 @@ package com.sentox.demo.function.base.activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.ParameterizedType
 
@@ -73,7 +73,7 @@ object ViewBindingUtil {
                     } catch (e: NoSuchMethodException) {
                     } catch (e: ClassCastException) {
                     } catch (e: InvocationTargetException) {
-                        Loger.e(
+                        L.e(
                             TAG,
                             "withGenericBindingClass => ${e.message}" + ", class: " + genericOwner.javaClass.simpleName
                         )
@@ -84,7 +84,7 @@ object ViewBindingUtil {
             genericSuperclass = superclass.genericSuperclass
             superclass = superclass.superclass
         }
-        Loger.e(
+        L.e(
             TAG,
             "withGenericBindingClass： " + genericOwner.javaClass.simpleName + ", genericSuperclass: " + genericOwner.javaClass.genericSuperclass
         )

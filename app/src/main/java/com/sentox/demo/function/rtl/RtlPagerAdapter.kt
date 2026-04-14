@@ -3,14 +3,12 @@ package com.meelive.ingkee.view
 
 import androidx.fragment.app.Fragment
 
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.core.text.TextUtilsCompat
 import android.util.LayoutDirection
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.PagerAdapter
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 import java.util.*
 
 /**
@@ -38,12 +36,12 @@ abstract class RtlPagerAdapter(fm: FragmentManager) : androidx.fragment.app.Frag
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        Loger.i("zhr", "instantiateItem orgPos=$position,returnPos=${reverse(position)}")
+        L.info("zhr", "instantiateItem orgPos=$position,returnPos=${reverse(position)}")
         return super.instantiateItem(container, reverse(position))
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        Loger.i("zhr", "destroyItem orgPos=$position,returnPos=${reverse(position)}")
+        L.info("zhr", "destroyItem orgPos=$position,returnPos=${reverse(position)}")
         super.destroyItem(container, reverse(position), `object`)
     }
 

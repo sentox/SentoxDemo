@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import com.sentox.demo.R;
 import com.sentox.demo.databinding.ActivityWebTestBinding;
 import com.sentox.demo.function.base.activity.BaseActivity;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import androidx.annotation.Nullable;
 
@@ -111,7 +111,7 @@ public class WebTestActivity extends BaseActivity<ActivityWebTestBinding> {
 
         @JavascriptInterface
         public void showDescription(String str) {
-            Loger.i(TAG, "====>showDescription=" + str);
+            L.info(TAG, "====>showDescription=" + str);
         }
     }
 }

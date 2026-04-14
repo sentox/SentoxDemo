@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.sentox.demo.function.base.log.L;
 import com.sentox.demo.function.language.LanguageManager;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import androidx.viewbinding.ViewBinding;
 public class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
     private VB binding = null;
+    public boolean mIsShowLifeCycle = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,12 +40,50 @@ public class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 //            mContentView.setTag(BaseViewTag.TAG_NAME, this);
             setContentView(mContentView);
         }
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onCreate");
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onStart");
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onResume");
+        }
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onPause");
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onStop");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onDestroy");
+        }
     }
 
     @Override
@@ -60,19 +100,10 @@ public class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
     public void onBackPressed() {
         try {
             super.onBackPressed();
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onCreate");
         } catch (Exception e) {
             finish();
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     public VB getBinding(){

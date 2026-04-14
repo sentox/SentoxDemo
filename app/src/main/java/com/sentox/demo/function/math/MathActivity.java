@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.sentox.demo.R;
 import com.sentox.demo.databinding.ActivityMathBinding;
 import com.sentox.demo.function.base.activity.BaseActivity;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,13 +90,13 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
     Thread mT1 = new Thread(new Runnable() {
         @Override
         public void run() {
-            Loger.i(TAG, "T1:线程启动");
+            L.info(TAG, "T1:线程启动");
             boolean flag = true;
             int index = 0;
             try {
                 while (flag) {
                     index++;
-                    Loger.i(TAG, "T1:" + index);
+                    L.info(TAG, "T1:" + index);
                     Thread.sleep(1000);
                     if (mFlagThreadStart) {
                         mT2.join();
@@ -106,7 +106,7 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            Loger.i(TAG, "T1:线程结束");
+            L.info(TAG, "T1:线程结束");
         }
     });
 
@@ -114,9 +114,9 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
         @Override
         public void run() {
             try {
-                Loger.i(TAG, "T2:线程启动");
+                L.info(TAG, "T2:线程启动");
                 Thread.sleep(4000);
-                Loger.i(TAG, "T2：线程结束");
+                L.info(TAG, "T2：线程结束");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -231,7 +231,7 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
     private void getCombinationOfNumberTimes(int number, ArrayList<Integer> result) {
 
         if (number == 1) {
-            Loger.i(TAG, "" + result);
+            L.info(TAG, "" + result);
             return;
         } else {
             for (int i = 0; i < mults.length; i++) {
@@ -287,7 +287,7 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
 //        combineList.add("墨西哥");
 
         combine(combineList, new ArrayList<String>(), 2);
-        Loger.i(TAG, "CombineCount = " + combineCount);
+        L.info(TAG, "CombineCount = " + combineCount);
         combineCount = 0;
     }
 
@@ -301,7 +301,7 @@ public class MathActivity extends BaseActivity<ActivityMathBinding> {
      **/
     private void combine(ArrayList<String> combineList, ArrayList<String> resultList, int m) {
         if (resultList == null || resultList.size() == m) {
-            Loger.i(TAG, resultList);
+            L.info(TAG, resultList);
             combineCount++;
             return;
         }

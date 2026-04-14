@@ -1,6 +1,6 @@
 package com.sentox.demo.utils.opengl;
 
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 
 import static android.opengl.GLES20.GL_COMPILE_STATUS;
 import static android.opengl.GLES20.GL_FRAGMENT_SHADER;
@@ -48,7 +48,7 @@ public class ShaderHelper {
     private static int compileShader(int type, String shaderCode) {
         final int shaderObjectId = glCreateShader(type);
         if (shaderObjectId == 0) {
-            Loger.i(TAG, "不能创建新的着色器");
+            L.info(TAG, "不能创建新的着色器");
             return 0;
         }
         //将着色器代码上传到着色器对象中
@@ -58,9 +58,9 @@ public class ShaderHelper {
         //检查编译状态，状态写入compileStatus的第0个元素
         final int[] compileStatus = new int[1];
         glGetShaderiv(shaderObjectId, GL_COMPILE_STATUS, compileStatus, 0);
-        Loger.i(TAG, "编译结果：" + "\n" + shaderCode + "\n" + glGetShaderInfoLog(shaderObjectId));
+        L.info(TAG, "编译结果：" + "\n" + shaderCode + "\n" + glGetShaderInfoLog(shaderObjectId));
         if (compileStatus[0] == 0) {
-            Loger.i(TAG, "编译失败，删除着色器对象");
+            L.info(TAG, "编译失败，删除着色器对象");
             glDeleteShader(shaderObjectId);
             return 0;
         }
@@ -74,7 +74,7 @@ public class ShaderHelper {
         //新建OpenGL 程序对象
         final int programObjectId = glCreateProgram();
         if (programObjectId == 0) {
-            Loger.i(TAG, "无法创建新的OpenGL的program");
+            L.info(TAG, "无法创建新的OpenGL的program");
             return 0;
         }
         glAttachShader(programObjectId, vertexShaderId);
@@ -82,11 +82,11 @@ public class ShaderHelper {
         glLinkProgram(programObjectId);
         final int[] linkStatus = new int[1];
         glGetProgramiv(programObjectId, GL_LINK_STATUS, linkStatus, 0);
-        Loger.i(TAG, "链接program返回结果：\n" + glGetProgramInfoLog(programObjectId));
+        L.info(TAG, "链接program返回结果：\n" + glGetProgramInfoLog(programObjectId));
         if (linkStatus[0] == 0) {
             //如果链接失败，删除程序对象
             glDeleteProgram(programObjectId);
-            Loger.i(TAG, "链接program失败");
+            L.info(TAG, "链接program失败");
             return 0;
         }
         return programObjectId;
@@ -100,7 +100,7 @@ public class ShaderHelper {
 
         final int[] validateStatus = new int[1];
         glGetProgramiv(programObjectId, GL_VALIDATE_STATUS, validateStatus, 0);
-        Loger.i(TAG, "Program验证结果：" + validateStatus[0] + "\n Log:" + glGetProgramInfoLog(programObjectId));
+        L.info(TAG, "Program验证结果：" + validateStatus[0] + "\n Log:" + glGetProgramInfoLog(programObjectId));
         return validateStatus[0] != 0;
     }
 

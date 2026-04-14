@@ -30,12 +30,15 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
 
+    public final static String TAG = "HomeActivity";
+
     private List<HomeBtnBean> mBtnList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private HomeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mIsShowLifeCycle = true;
         super.onCreate(savedInstanceState);
         initList();
         initView();

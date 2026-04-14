@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author skye
  */
-public class Loger {
+public class L {
 
     public static boolean sDebug = BuildConfig.LOG_DEBUG;
 
@@ -86,7 +86,7 @@ public class Loger {
      * @param tag 标识符
      * @param msg 打印信息
      */
-    public static void i(String tag, String msg) {
+    public static void info(String tag, String msg) {
         if (sDebug) {
             Log.i(tag, msg);
         }
@@ -96,7 +96,7 @@ public class Loger {
      * @param tag 标识符
      * @param msg 打印信息
      */
-    public static void i(String tag, Object... msg) {
+    public static void info(String tag, Object... msg) {
         if (sDebug) {
             Log.i(tag, Arrays.toString(msg));
         }
@@ -107,7 +107,7 @@ public class Loger {
      * @param msg 打印信息
      * @param tr  抛出的异常
      */
-    public static void i(String tag, String msg, Throwable tr) {
+    public static void info(String tag, String msg, Throwable tr) {
         if (sDebug) {
             Log.i(tag, msg, tr);
         }

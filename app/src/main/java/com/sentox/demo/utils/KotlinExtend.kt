@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.util.SparseArray
 import android.view.View
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 
 /**
  * 正常编码中一般只会用到 [dp]/[sp] ;
@@ -53,7 +53,7 @@ fun Context.isInstalled(pkg: String?): Boolean {
     try {
         return (null != packageManager.getApplicationInfo(pkg, PackageManager.GET_UNINSTALLED_PACKAGES))
     } catch (ex: Exception) {
-        Loger.d("$pkg is not installed.")
+        L.d("$pkg is not installed.")
     }
     return false
 }

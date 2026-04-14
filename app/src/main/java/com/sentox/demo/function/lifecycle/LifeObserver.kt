@@ -3,7 +3,7 @@ package com.sentox.demo.function.lifecycle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 
 /**
  * 描述：Lifecycle观察者
@@ -17,11 +17,11 @@ class LifeObserver : LifecycleObserver{
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun connectListener(){
-        Loger.i(TAG, "connect----onResume");
+        L.info(TAG, "connect----onResume");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun disconnectListener(){
-        Loger.i(TAG, "disconnect----onPause");
+        L.info(TAG, "disconnect----onPause");
     }
 }

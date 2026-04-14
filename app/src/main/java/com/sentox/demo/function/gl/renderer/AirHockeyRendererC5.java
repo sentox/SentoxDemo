@@ -5,7 +5,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 import com.sentox.demo.function.gl.objects.Table;
 import com.sentox.demo.function.gl.program.TextureShaderProgram;
 import com.sentox.demo.utils.opengl.TextureHelper;
@@ -53,7 +53,7 @@ public class AirHockeyRendererC5 implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
-        Loger.i(TAG, "surface被改变");
+        L.info(TAG, "surface被改变");
         //通知OpenGL可视区域改变
         GLES20.glViewport(0, 0, width, height);
         //获得实际长宽比，以较长的边为分子，较短的边为分母

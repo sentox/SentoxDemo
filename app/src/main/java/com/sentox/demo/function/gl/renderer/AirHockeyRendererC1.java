@@ -5,7 +5,7 @@ import android.opengl.GLSurfaceView;
 
 import com.sentox.demo.BuildConfig;
 import com.sentox.demo.R;
-import com.sentox.demo.function.base.log.Loger;
+import com.sentox.demo.function.base.log.L;
 import com.sentox.demo.utils.opengl.ShaderHelper;
 import com.sentox.demo.utils.opengl.TextResourceReader;
 
@@ -109,7 +109,7 @@ public class AirHockeyRendererC1 implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-        Loger.i(TAG, "surface被创建");
+        L.info(TAG, "surface被创建");
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_vertex_shader);
         String fragmentShaderSource = TextResourceReader.readTextFileFromResource(R.raw.simple_fragment_shader);
@@ -148,7 +148,7 @@ public class AirHockeyRendererC1 implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceChanged(GL10 gl10, int width, int height) {
-        Loger.i(TAG, "surface被改变");
+        L.info(TAG, "surface被改变");
         GLES20.glViewport(0, 0, width, height);
 //        glClearColor(0,0,0,0);
     }

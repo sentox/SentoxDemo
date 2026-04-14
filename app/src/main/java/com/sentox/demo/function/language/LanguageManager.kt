@@ -9,7 +9,7 @@ import android.text.TextUtils
 import com.sentox.demo.R
 import com.sentox.demo.function.base.application.GOApplication
 import com.sentox.demo.function.base.application.LauncherModel
-import com.sentox.demo.function.base.log.Loger
+import com.sentox.demo.function.base.log.L
 import com.sentox.demo.function.base.preferences.IPreferencesIds
 import java.util.*
 import kotlin.collections.LinkedHashMap
@@ -103,7 +103,7 @@ class LanguageManager private constructor() {
                 bean.mLanguageCode = codes[0]
                 bean.mCountryCode = codes[1]
                 mLanguages.put(param[1], bean)
-                Loger.i(TAG, "\n${bean.mDisPlayName}")
+                L.info(TAG, "\n${bean.mDisPlayName}")
             }
         }
     }
