@@ -43,6 +43,7 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mIsShowLifeCycle = true
         super.onCreate(savedInstanceState)
         L.info(TAG, "主线线程${Thread.currentThread().name},id=${Thread.currentThread().id}")
         lifecycleScope.launch {
@@ -56,7 +57,6 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
                 }
             }
         }
-        mViewModel.reqData()
 //        val flow = MutableStateFlow(1)
 //        CoroutineScope(Dispatchers.Default).launch {
 //            launch(Dispatchers.IO) {
@@ -95,6 +95,10 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
 
     class TestModel : ViewModel() {
 
+        init {
+            reqData()
+        }
+
         private val mUpdateStateFlow = MutableStateFlow<UiData?>(null)
         var mUiFlow: StateFlow<UiData?> = mUpdateStateFlow.asStateFlow()
 
@@ -106,6 +110,7 @@ class LifecycleTestActivity : BaseActivity<ActivityLifecycleBinding>() {
         fun reqData() {
             viewModelScope.launch {
                 val result = withContext(Dispatchers.IO) {
+                    L.info(TAG, "开始请求数据")
                     delay(4000)
                     val data = UiData("result001", "result002")
                     L.info(TAG, "获取到数据，线程${Thread.currentThread().name}")

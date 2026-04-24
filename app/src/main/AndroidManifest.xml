@@ -115,6 +115,13 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Fullscreen" />
 
+        <activity
+            android:name=".function.compose.ComposeTestActivity"
+            android:exported="true"
+            android:configChanges="orientation"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Fullscreen" />
+
         <service android:name=".function.clock.ClockService" />
     </application>
 

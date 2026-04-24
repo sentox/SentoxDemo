@@ -23,7 +23,6 @@ public class GOApplication extends MultiDexApplication {
         super.onCreate();
         sInstance = this;
         sCurrentProcessName = AppUtils.getCurrentProcessName(getApplicationContext());
-        DBManager.initSingleton(this);
         initOnDifferentProcess();
     }
 

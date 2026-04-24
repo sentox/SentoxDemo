@@ -2,6 +2,7 @@ package com.sentox.demo.function.base.activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
@@ -42,6 +43,14 @@ public class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
         }
         if (mIsShowLifeCycle) {
             L.info(BaseActivity.this.getClass().getSimpleName(), "onCreate");
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (mIsShowLifeCycle) {
+            L.info(BaseActivity.this.getClass().getSimpleName(), "onNewIntent");
         }
     }
 

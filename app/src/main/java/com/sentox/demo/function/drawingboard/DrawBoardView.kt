@@ -41,7 +41,7 @@ class DrawBoardView: View, View.OnTouchListener {
         super.onSizeChanged(w, h, oldw, oldh)
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawImage(canvas)
     }

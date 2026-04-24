@@ -56,9 +56,9 @@ class CircleWaveView : View {
         initAnim()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas?.clipPath(mClipPath)
+        canvas.clipPath(mClipPath)
         drawWave2(canvas)
         drawWave1(canvas)
 

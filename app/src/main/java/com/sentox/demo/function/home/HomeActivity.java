@@ -7,6 +7,7 @@ import com.sentox.demo.databinding.ActivityHomeBinding;
 import com.sentox.demo.function.base.BaseLinearLayoutManager;
 import com.sentox.demo.function.base.activity.BaseActivity;
 import com.sentox.demo.function.clock.ClockActivity;
+import com.sentox.demo.function.compose.ComposeTestActivity;
 import com.sentox.demo.function.gl.GLTestActivity;
 import com.sentox.demo.function.lifecycle.LifecycleTestActivity;
 import com.sentox.demo.function.math.MathActivity;
@@ -99,5 +100,12 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
         btnBean9.setStrTitle("画板");
         btnBean9.setNextClass(RtlViewPagerTestActivity.class);
         mBtnList.add(btnBean9);
+
+        HomeBtnBean btnBean10 = new HomeBtnBean();
+        btnBean10.setStrTitle("Compose");
+        btnBean10.setNextClass(ComposeTestActivity.class);
+        mBtnList.add(btnBean10);
+
+
     }
 }
