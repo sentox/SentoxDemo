@@ -129,6 +129,9 @@ dependencies {
     // Debug 依赖（仅在调试时使用）
     debugImplementation "androidx.compose.ui:ui-tooling:$COMPOSE_VERSION"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$COMPOSE_VERSION"
+
+    //配合compose的图片加载库
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
 
 

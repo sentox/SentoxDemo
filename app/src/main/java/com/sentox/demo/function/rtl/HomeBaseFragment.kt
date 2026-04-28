@@ -33,8 +33,8 @@ abstract class HomeBaseFragment<VB : ViewBinding> : Fragment() {
         return mContentView
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(LanguageManager.instance.attachBaseContext(context!!))
+    override fun onAttach(context: Context) {
+        super.onAttach(LanguageManager.instance.attachBaseContext(context))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
